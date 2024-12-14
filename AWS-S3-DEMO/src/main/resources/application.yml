@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: Spring-boot-demo-with-AWS-S3
+
+server:
+  port: 9092
