@@ -4,3 +4,9 @@ spring:
 
 server:
   port: 9092
+
+AWS:
+  secret:
+    key: "IM6ZZ4Ks9U51riWK+db1hA1vZLVCUwP9sH0TQXw6"
+  access:
+    key: "AKIAZ24ISRUKO4BPTVUF"

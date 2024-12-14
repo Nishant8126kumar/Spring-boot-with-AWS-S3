@@ -10,6 +10,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
@@ -22,6 +23,20 @@ import java.security.SecureRandom;
 @Slf4j
 public class AwsUtil {
 
+
+    @Value("${AWS.secret.key}")
+    private String secretKey;
+    @Value("${AWS.access.key}")
+    private String accessKay;
+
+    public AmazonS3 initializeAmazon() {
+        AmazonS3 s3Client;
+        Regions regions = Regions.US_EAST_2;
+        AWSCredentials credentials = new BasicAWSCredentials(accessKay, secretKey);
+        s3Client = new AmazonS3Client(credentials);
+        s3Client.setRegion(Region.getRegion(regions));
+        return s3Client;
+    }
 
     public String createFolderInS3Bucket() {
         try {
@@ -38,15 +53,6 @@ public class AwsUtil {
             log.info("Exception occurred while create folder in bucket. " + ex.getMessage());
         }
         return null;
-    }
-
-    public AmazonS3 initializeAmazon() {
-        AmazonS3 s3Client;
-        Regions regions = Regions.US_EAST_2;
-        AWSCredentials credentials = new BasicAWSCredentials("AKIAZ24ISRUKO4BPTVUF", "IM6ZZ4Ks9U51riWK+db1hA1vZLVCUwP9sH0TQXw6");
-        s3Client = new AmazonS3Client(credentials);
-        s3Client.setRegion(Region.getRegion(regions));
-        return s3Client;
     }
 
     public String uploadFileOnS3Aws(String fileName, SXSSFWorkbook workbook) {
