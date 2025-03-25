@@ -1,6 +1,11 @@
 spring:
   application:
     name: Spring-boot-demo-with-AWS-S3
+  config:
+    import: optional:aws-secretsmanager:s3_credential
+
+database:
+  name: ${S3_ACCESS_KEY}
 
 server:
   port: 9092

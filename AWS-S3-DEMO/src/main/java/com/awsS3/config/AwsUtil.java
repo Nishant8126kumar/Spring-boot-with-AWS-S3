@@ -31,7 +31,7 @@ public class AwsUtil {
 
     public AmazonS3 initializeAmazon() {
         AmazonS3 s3Client;
-        Regions regions = Regions.US_EAST_2;
+        Regions regions = Regions.US_EAST_1;
         AWSCredentials credentials = new BasicAWSCredentials(accessKay, secretKey);
         s3Client = new AmazonS3Client(credentials);
         s3Client.setRegion(Region.getRegion(regions));
@@ -46,7 +46,7 @@ public class AwsUtil {
             ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setContentLength(0);
             InputStream emptyContent = new ByteArrayInputStream(new byte[0]);
-            PutObjectRequest putObjectRequest = new PutObjectRequest("my-first-bucket-81", folderName, emptyContent, objectMetadata);
+            PutObjectRequest putObjectRequest = new PutObjectRequest("insee-data-nishant", folderName, emptyContent, objectMetadata);
             s3Client.putObject(putObjectRequest);
             return folderName;
         } catch (Exception ex) {
@@ -66,7 +66,7 @@ public class AwsUtil {
             workbook.close();
             AmazonS3 s3Client = this.initializeAmazon();
             String keyName = folderName + file.getName();
-            s3Client.putObject(new PutObjectRequest("my-first-bucket-81", keyName, file));
+            s3Client.putObject(new PutObjectRequest("insee-data-nishant", keyName, file));
             return "File has been uploaded successfully.";
         } catch (Exception ex) {
             log.info("Exception :" + ex);
