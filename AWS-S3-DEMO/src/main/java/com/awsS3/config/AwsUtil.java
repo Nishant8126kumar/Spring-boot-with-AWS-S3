@@ -24,9 +24,9 @@ import java.security.SecureRandom;
 public class AwsUtil {
 
 
-    @Value("${AWS.secret.key}")
+    @Value("${aws.secret.key.id}")
     private String secretKey;
-    @Value("${AWS.access.key}")
+    @Value("${aws.access.key}")
     private String accessKay;
 
     public AmazonS3 initializeAmazon() {

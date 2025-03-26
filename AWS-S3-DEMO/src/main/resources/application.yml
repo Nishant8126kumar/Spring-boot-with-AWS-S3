@@ -1,17 +1,18 @@
 spring:
   application:
     name: Spring-boot-demo-with-AWS-S3
-  config:
-    import: optional:aws-secretsmanager:s3_credential
+#  config:
+#    import: optional:aws-secretsmanager:s3_credential
 
-database:
-  name: ${S3_ACCESS_KEY}
+#database:
+#  name: ${S3_ACCESS_KEY}
 
 server:
   port: 9092
 
-AWS:
+aws:
   secret:
-    key: "IM6ZZ4Ks9U51riWK+db1hA1vZLVCUwP9sH0TQXw6"
+    key:
+      id: "IM6ZZ4Ks9U51riWK+db1hA1vZLVCUwP9sH0TQXw6"
   access:
     key: "AKIAZ24ISRUKO4BPTVUF"
